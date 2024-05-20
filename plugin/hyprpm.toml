@@ -1,0 +1,10 @@
+[hyprtracker]
+description = "a plugin which tracks how long each window has been active"
+version = "0.1"
+author = "NuttyShrimp"
+
+[hyprtracker.build]
+output = "plugin/hyprtracker.so"
+steps = [
+    "make",
+]
