@@ -2,3 +2,4 @@
 .data/
 vm-config/
 plugin/cmake-build-debug
+.ccls-cache
