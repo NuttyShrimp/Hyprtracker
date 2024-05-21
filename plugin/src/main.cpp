@@ -30,8 +30,18 @@ APICALL EXPORT PLUGIN_DESCRIPTION_INFO PLUGIN_INIT(HANDLE handle) {
         throw std::runtime_error("[HyprTracker] Version mismatch");
     }
 
+    // Binding cerr to file
+    std::ofstream err_file(std::format("{}/.local/share/hyprtracker/plugin.log", std::getenv("HOME")));
+    if (!err_file.is_open()) {
+        std::cerr << "Failed to open log file" << std::endl;
+        throw std::runtime_error("Failed to open log file");
+    }
+    std::cout.rdbuf(err_file.rdbuf());
+    std::cerr.rdbuf(err_file.rdbuf());
+
     // TODO: If the server is running locally, get the port from the env variable
-    HyprlandAPI::addConfigValue(PHANDLE, "plugin:hyprtracker:endpoint", Hyprlang::STRING{"http://localhost:21435"});
+    // TODO: Re-add the external server idea (ability to choose to where to save to sqlite, webserver,...)
+    // HyprlandAPI::addConfigValue(PHANDLE, "plugin:hyprtracker:endpoint", Hyprlang::STRING{"http://localhost:21435"});
 
     store->init();
 

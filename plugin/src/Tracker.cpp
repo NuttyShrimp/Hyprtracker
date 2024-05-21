@@ -4,11 +4,18 @@
 
 Tracker::Tracker(std::shared_ptr<Store> store): m_store(store) {}
 
+Tracker::~Tracker() {
+    store_duration(nullptr);
+}
+
 void Tracker::onWindowChange(PHLWINDOW window) {
     if (window == m_currentWindow) {
         return;
     }
+    store_duration(window);
+}
 
+void Tracker::store_duration(PHLWINDOW window) {
     if (m_currentWindow != nullptr) {
         // Calculate the time spent in the window
         auto duration = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now() - m_startTime);
@@ -19,6 +26,8 @@ void Tracker::onWindowChange(PHLWINDOW window) {
         m_store->saveDuration(title, duration);
     }
 
-    m_currentWindow = window;
-    m_startTime = std::chrono::system_clock::now();
+    if (window != nullptr) {
+        m_currentWindow = window;
+        m_startTime = std::chrono::system_clock::now();
+    }
 }

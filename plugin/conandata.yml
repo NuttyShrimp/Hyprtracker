@@ -2,4 +2,4 @@
 # To keep your changes, remove these comment lines, but the plugin won't be able to modify your requirements
 
 requirements:
-  - "cpr/1.10.5"
+  - "sqlitecpp/3.3.1"

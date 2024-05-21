@@ -9,26 +9,26 @@
   };
   outputs = { self, hyprland, nix-filter, nixpkgs-unstable, ... }:
     let
-      inherit (hyprland.inputs) nixpkgs;
-      inherit (nixpkgs) lib;
+      # inherit (hyprland.inputs) nixpkgs;
+      inherit (nixpkgs-unstable) lib;
 
       forHyprlandSystems = fn: lib.genAttrs (builtins.attrNames hyprland.packages) (
       system:
         let
-          pkgs = nixpkgs.legacyPackages.${system};
+          pkgs = nixpkgs-unstable.legacyPackages.${system};
           unstable = import nixpkgs-unstable {
             system = system;
             config = {
               allowUnfree = true;
             };
           };
-          hyprlandPkg = unstable.hyprland; # hyprland.packages.${system}.hyprland;
+          hyprlandPkg = unstable.hyprland.dev; # hyprland.packages.${system}.hyprland;
           hyprtrackerPkg = self.packages.${system}.hyprtracker;
         in
         fn { inherit pkgs hyprlandPkg hyprtrackerPkg unstable; }
       );
     in {
-      packages = forHyprlandSystems({ pkgs, hyprlandPkg, hyprtrackerPkg, unstable }:
+      packages = forHyprlandSystems({ pkgs, hyprlandPkg, hyprtrackerPkg, ... }:
         {
           hyprtracker = pkgs.stdenv.mkDerivation {
             pname = "hyprtracker";
@@ -96,6 +96,7 @@
           packages = with pkgs; [
             conan
             unstable.jetbrains.clion
+            ccls
           ];
 
           inputsFrom = [

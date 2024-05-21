@@ -17,11 +17,11 @@ add_library(hyprtracker SHARED ${SRC})
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(DEPS REQUIRED hyprland pixman-1 libdrm)
 
-find_package(cpr)
+find_package(SQLiteCpp REQUIRED)
 
 add_compile_definitions(WLR_USE_UNSTABLE)
 
-target_link_libraries(hyprtracker cpr::cpr)
-target_link_libraries(hyprtracker PRIVATE rt PkgConfig::deps)
+target_link_libraries(hyprtracker SQLiteCpp)
+target_include_directories(hyprtracker PRIVATE ${DEPS_INCLUDE_DIRS})
 
 install(TARGETS hyprtracker)
