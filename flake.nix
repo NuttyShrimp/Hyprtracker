@@ -3,7 +3,13 @@
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     systems.follows = "hyprland/systems";
-    hyprtracker.url = "./plugin";
+    hyprtracker = {
+      url = "./plugin";
+      inputs = {
+        hyprland.follows = "hyprland";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
   };
 
   outputs = {
