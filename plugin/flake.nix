@@ -39,39 +39,33 @@
                 "src"
                 ./Makefile
                 ./CMakeLists.txt
-                ./conanfile.py
-                ./conandata.yml
-                ./conan_provider.cmake
                 ./hyprpm.toml
               ];
             };
 
             nativeBuildInputs = with pkgs; [
+              ninja
               cmake
               pkg-config
-              conan
               hyprlandPkg
+              sqlite
+              sqlitecpp
             ];
 
-            buildInputs = with pkgs; [ hyprlandPkg conan ] ++ hyprlandPkg.buildInputs;
+            buildInputs = [ hyprlandPkg ] ++ hyprlandPkg.buildInputs;
 
-            dontUseCmakeConfigure = true;
-            dontUseMesonConfigure = true;
-
-            buildPhase = ''
-              ls -al
-              make
-            '';
+            cmakeFlags = [ "-G Ninja -DCONAN:bool=Off" ];
 
             installPhase = ''
               mkdir -p $out/lib
-              cp ./hyprtracker.so $out/lib/libhyprtracker.so
+              cp ./libhyprtracker.so $out/lib/libhyprtracker.so
             '';
 
             meta = with pkgs.lib; {
               homepage = "https://github.com/NuttyShrimp/hyprtracker";
               description = "a time tracking plugin for Hyprland";
               platforms = platforms.linux;
+              license = licenses.mit;
             };
           };
           default = hyprtrackerPkg;

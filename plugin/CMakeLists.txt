@@ -1,7 +1,11 @@
 cmake_minimum_required(VERSION 3.15)
-set(CMAKE_PROJECT_TOP_LEVEL_INCLUDES conan_provider.cmake)
 
 project("hyprtracker" LANGUAGES CXX)
+
+option(CONAN "Use conan to find dependencies" ON)
+if(CONAN)
+  set(CMAKE_PROJECT_TOP_LEVEL_INCLUDES conan_provider.cmake)
+endif(CONAN)
 
 if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
