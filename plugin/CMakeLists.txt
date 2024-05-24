@@ -9,6 +9,7 @@ endif()
 
 # Compile flags
 set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 file(GLOB_RECURSE SRC "src/*.cpp")
 

@@ -5,6 +5,7 @@ debug:
 	cmake --build ./Debug -j
 	rm -rf ./hyprtracker.so
 	ln -s ./Debug/hyprtracker.so .
+	ln -s ./Debug/compile_commands.json .
 
 release:
 	cmake -B ./Release -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=$(PREFIX)

@@ -2,3 +2,4 @@ hyprtracker.so
 .idea/
 Release/
 Debug/
+compile_commands.json
