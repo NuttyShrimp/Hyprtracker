@@ -10,7 +10,7 @@
 void Store::init() {
     auto db = SQLite::Database(std::format("{}/.local/share/hyprtracker/durations.db", std::getenv("HOME")),
                             SQLite::OPEN_READWRITE | SQLite::OPEN_CREATE);
-    db.exec("CREATE TABLE IF NOT EXISTS durations (window TEXT, duration INTEGER);");
+    db.exec("CREATE TABLE IF NOT EXISTS durations (window TEXT, duration INTEGER, date INTEGER default (unixepoch()));");
     // Should be stored in ~/.local/share/hyprtracker/durations
     // if (!exists(m_storePath)) {
     //     create_directories(m_storePath.parent_path());
