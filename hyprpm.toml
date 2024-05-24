@@ -2,9 +2,12 @@
 description = "a plugin which tracks how long each window has been active"
 version = "0.1"
 author = "NuttyShrimp"
+commit_pins = [
+  
+]
 
 [hyprtracker.build]
 output = "plugin/hyprtracker.so"
 steps = [
-    "make",
+    "make -C plugin release",
 ]
