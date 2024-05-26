@@ -3,8 +3,8 @@ description = "a plugin which tracks how long each window has been active"
 version = "0.1"
 author = "NuttyShrimp"
 commit_pins = [
-  ["3621ce514fb8d076b503197ac2184691781d4e57", "cba1ade848feac44b2eda677503900639581c3f4"]
-  ["3621ce514fb8d076b503197ac2184691781d4e57", "2ccd45a84475fab46c6fecd2fe226d3173104743"] 
+  ["3621ce514fb8d076b503197ac2184691781d4e57", "cba1ade848feac44b2eda677503900639581c3f4"],
+  ["3621ce514fb8d076b503197ac2184691781d4e57", "2ccd45a84475fab46c6fecd2fe226d3173104743"],
 ]
 
 [hyprtracker.build]
