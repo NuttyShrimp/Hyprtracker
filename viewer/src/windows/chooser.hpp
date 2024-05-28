@@ -1,3 +1,5 @@
+#pragma once
+
 #include <gtkmm/button.h>
 #include <gtkmm/centerbox.h>
 #include <gtkmm/flowbox.h>
@@ -12,4 +14,7 @@ private:
   Gtk::FlowBox m_buttonBox;
   Gtk::Button m_openDefaultButton;
   Gtk::Button m_chooseLocButton;
+
+  void onOpenDefaultButtonClicked();
+  void onSelectFileButtonClicked();
 };

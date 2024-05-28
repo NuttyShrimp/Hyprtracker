@@ -9,6 +9,8 @@ public:
   Viewer();
   ~Viewer() override;
 
+  void onWidgetChanged();
+
 protected:
   Chooser m_chooser;
 };
