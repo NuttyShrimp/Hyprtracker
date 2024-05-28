@@ -3,3 +3,4 @@
 vm-config/
 plugin/cmake-build-debug
 .ccls-cache
+viewer/CMakeUserPresets.json

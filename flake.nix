@@ -2,7 +2,7 @@
   inputs = {
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    systems.follows = "hyprland/systems";
+    systems.url = "github:nix-systems/default-linux";
     hyprtracker = {
       url = "./plugin";
       inputs = {

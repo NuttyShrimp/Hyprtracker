@@ -1,10 +1,11 @@
 .PHONY: debug clean
 
 debug:
-	cmake -B ./Debug -DCMAKE_BUILD_TYPE=Debug
-	cmake --build ./Debug
+	conan install conanfile.txt --build=missing -s build_type=Debug
+	cmake --preset conan-debug
+	cmake --build --preset conan-debug
 	# Make ccls happy
-	cp ./Debug/compile_commands.json ./
+	cp ./build/Debug/compile_commands.json ./
 
 clean:
 	rm -rf ./Debug

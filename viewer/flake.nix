@@ -4,14 +4,14 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = input@{self, nixpkgs, flake-utils, ...} :
+  outputs = {self, nixpkgs, flake-utils, ...} :
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs {
           inherit system;
         };
-      in rec {
-        devShells.default = pkgs.mkShell rec {
+      in {
+        devShells.default = pkgs.mkShell {
           name = "hyprtracker-viewer";
 
           nativeBuildInputs = with pkgs; [
@@ -28,6 +28,7 @@
 
           packages = with pkgs; [
             # Development Tools
+            conan
             cmake
             ccls
           ];
