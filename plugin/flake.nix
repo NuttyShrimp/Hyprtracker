@@ -3,20 +3,20 @@
   inputs = {
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     nix-filter.url = "github:numtide/nix-filter";
-    nixpkgs-unstable = {
+    nixpkgs = {
       url = "github:nixos/nixpkgs/nixos-unstable";
     };
   };
-  outputs = { self, hyprland, nix-filter, nixpkgs-unstable, ... }:
+  outputs = { self, hyprland, nix-filter, nixpkgs, ... }:
     let
       # inherit (hyprland.inputs) nixpkgs;
-      inherit (nixpkgs-unstable) lib;
+      inherit (nixpkgs) lib;
 
       forHyprlandSystems = fn: lib.genAttrs (builtins.attrNames hyprland.packages) (
       system:
         let
-          pkgs = nixpkgs-unstable.legacyPackages.${system};
-          unstable = import nixpkgs-unstable {
+          pkgs = nixpkgs.legacyPackages.${system};
+          unstable = import nixpkgs {
             system = system;
             config = {
               allowUnfree = true;
