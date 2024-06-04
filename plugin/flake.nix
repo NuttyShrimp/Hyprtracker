@@ -74,22 +74,19 @@
 
 
       devShells = forHyprlandSystems ({ pkgs, hyprlandPkg, hyprtrackerPkg, unstable }: {
-        default = pkgs.mkShell {
+        default = pkgs.mkShell.override { stdenv = pkgs.gcc13Stdenv; } {
           name = "hyprtracker-dev";
 
           nativeBuildInputs = with pkgs; [
-            clang-tools_16
             cmake
             bear
           ];
-
           buildInputs = [
             hyprlandPkg
           ];
 
           packages = with pkgs; [
             conan
-            unstable.jetbrains.clion
             ccls
           ];
 
