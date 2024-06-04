@@ -3,7 +3,6 @@
 WidgetManager::WidgetManager() : m_current_widget(nullptr) {}
 
 void WidgetManager::set_current_widget(Gtk::Widget *widget) {
-  // Shouldn't we copy here?
   m_current_widget = widget;
   m_current_widget_changed();
 };

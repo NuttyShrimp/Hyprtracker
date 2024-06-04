@@ -1,0 +1,4 @@
+- [ ] View manager -> Make viewer show what widget is stored here
+    - [ ] Change widget to charts when db is loaded
+- [ ] Dialogmanager -> Create new dialogs in the viewer class
+- [ ] DB store finish -> Needs path from chooser to init -> Singleton

@@ -6,6 +6,7 @@
 #include "../windows/daily.hpp"
 #include <filesystem>
 #include <gtkmm/button.h>
+#include <gtkmm/filedialog.h>
 #include <gtkmm/flowbox.h>
 #include <iostream>
 
@@ -47,7 +48,34 @@ void Chooser::onOpenDefaultButtonClicked() {
   DbManager::instance().set_db_path(defaultPath);
   auto dailyScreen = new Daily();
   WidgetManager::instance().set_current_widget(dailyScreen);
-  std::cout << "Opened default database at " << defaultPath << std::endl;
 }
 
-void Chooser::onSelectFileButtonClicked() {}
+void Chooser::onSelectFileButtonClicked() {
+  auto fileDialog = Gtk::FileDialog::create();
+  fileDialog->set_title("Select the duration database file");
+
+  auto filters = Gio::ListStore<Gtk::FileFilter>::create();
+  auto dbFilter = Gtk::FileFilter::create();
+  dbFilter->set_name("Database files");
+  dbFilter->add_pattern("*.db");
+  filters->append(dbFilter);
+
+  fileDialog->set_filters(filters);
+
+  fileDialog->open(
+      sigc::bind(sigc::mem_fun(*this, &Chooser::onFileSelected), fileDialog));
+}
+
+void Chooser::onFileSelected(const Glib::RefPtr<Gio::AsyncResult> &result,
+                             const Glib::RefPtr<Gtk::FileDialog> &dialog) {
+  auto file = dialog->open_finish(result);
+  auto filePath = path(file->get_path());
+  if (!exists(filePath) || is_directory(filePath)) {
+    AlertBoxManager::instance().show_message("Invalid path to database", "");
+    return;
+  }
+
+  DbManager::instance().set_db_path(filePath);
+  auto dailyScreen = new Daily();
+  WidgetManager::instance().set_current_widget(dailyScreen);
+}

@@ -9,3 +9,4 @@ debug:
 
 clean:
 	rm -rf ./Debug
+	rm -rf ./compile_commands.json

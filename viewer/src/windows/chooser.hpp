@@ -2,6 +2,7 @@
 
 #include <gtkmm/button.h>
 #include <gtkmm/centerbox.h>
+#include <gtkmm/filedialog.h>
 #include <gtkmm/flowbox.h>
 
 class Chooser : public Gtk::CenterBox {
@@ -17,4 +18,6 @@ private:
 
   void onOpenDefaultButtonClicked();
   void onSelectFileButtonClicked();
+  void onFileSelected(const Glib::RefPtr<Gio::AsyncResult> &result,
+                      const Glib::RefPtr<Gtk::FileDialog> &dialog);
 };
