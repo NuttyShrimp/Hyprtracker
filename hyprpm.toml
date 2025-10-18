@@ -1,0 +1,14 @@
+[repository]
+name = "HyprTracker"
+authors = ["NuttyShrimp"]
+commit_pins = [
+
+]
+
+[plugin-name]
+description = "A plugin to track your time spending in applications"
+authors = ["NuttyShrimp"]
+output = "plugin/build/meson-src/libhyprtracker.so"
+build = [
+    "make -C plugin compile"
+]
