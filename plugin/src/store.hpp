@@ -6,6 +6,9 @@ public:
   Store();
   ~Store() = default;
 
+  void init();
+  void storeWindowChange(std::string window, int duration);
+
 private:
   SQLite::Database db;
 };
