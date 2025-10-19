@@ -5,7 +5,7 @@ commit_pins = [
   ["71a1216abcc7031776630a6d88f105605c4dc1c9", "63e7fa039c665b7f80c284463d3c0bed671c952d"]
 ]
 
-[plugin-name]
+[hyprtracker]
 description = "A plugin to track your time spending in applications"
 authors = ["NuttyShrimp"]
 output = "plugin/build/meson-src/libhyprtracker.so"
