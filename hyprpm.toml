@@ -2,7 +2,7 @@
 name = "HyprTracker"
 authors = ["NuttyShrimp"]
 commit_pins = [
-  ["71a1216abcc7031776630a6d88f105605c4dc1c9", "65c168238207e4ead5be168eb7697dd929e2f0fa"]
+  ["71a1216abcc7031776630a6d88f105605c4dc1c9", "281c55c943446d8d433b9bd749786b03c0c07ba3"]
 ]
 
 [hyprtracker]
