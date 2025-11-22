@@ -4,5 +4,4 @@
 
 inline HANDLE PHANDLE = nullptr;
 
-
 inline std::string STORAGE_LOCATION = "/.local/share/hypr";
