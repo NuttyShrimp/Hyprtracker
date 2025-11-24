@@ -8,8 +8,9 @@ src = globber.stdout().strip().split('\n')
 
 gtkmm_dep = dependency('gtkmm-4.0', version: '>= 4.6.0')
 sqlitecpp = dependency('sqlitecpp', version: '3.3.2')
+adwaita = dependency('libadwaita-1')
 
 executable(meson.project_name(), src,
-  dependencies: [gtkmm_dep, sqlitecpp],
+  dependencies: [gtkmm_dep, sqlitecpp, adwaita],
 #  win_subsystem: 'windows',
 )
